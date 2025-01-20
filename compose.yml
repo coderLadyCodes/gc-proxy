@@ -1,0 +1,17 @@
+services:
+  proxy:
+    image: nginx:1.24-alpine
+    container_name: gc-proxy
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./db-gc.conf:/etc/nginx/conf.d/db-gc.conf
+      - ./api-gc.conf:/etc/nginx/conf.d/api-gc.conf
+#      - ./web-gc.conf:/etc/nginx/conf.d/web-gc.conf
+    networks:
+      - app-network
+networks:
+  app-network:
+    external: true
+    name: app-network
