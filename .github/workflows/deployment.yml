@@ -45,4 +45,5 @@ jobs:
           port: 22
           script: |
             docker network inspect app-network >/dev/null 2>&1 || docker network create app-network
+            
             docker compose -f /opt/applications/gc/${{ env.IMAGE }}/compose.yml up -d
