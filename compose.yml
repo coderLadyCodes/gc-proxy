@@ -4,7 +4,7 @@ services:
     container_name: gc-proxy
     restart: always
     ports:
-      - 8080:80
+      - 80:80
     volumes:
       - ./db-gc.conf:/etc/nginx/conf.d/db-gc.conf
       - ./api-gc.conf:/etc/nginx/conf.d/api-gc.conf
