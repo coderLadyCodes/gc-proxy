@@ -35,7 +35,7 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           source: "compose.yml"
-          target: /opt/applications/gc/${{ENV.IMAGE}}
+          target: /opt/applications/gc/${{env.IMAGE}}
       - name: execute commands to run container
         uses: appleboy/ssh-action@v1.2.0
         with:
@@ -44,6 +44,10 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           script: |
-            docker network inspect app-network >/dev/null 2>&1 || docker network create app-network
-            
+            docker network inspect app-network >/dev/null 2>&1 || docker network create app-network        
             docker compose -f /opt/applications/gc/${{ env.IMAGE }}/compose.yml up -d
+            
+            docker network inspect app-network || echo "Network not found."
+            docker ps -a || echo "No containers running."
+            docker logs gc-proxy || echo "No logs available for gc-proxy."
+            
