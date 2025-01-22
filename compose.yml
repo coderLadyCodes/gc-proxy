@@ -8,7 +8,7 @@ services:
     volumes:
       - ./db-gc.conf:/etc/nginx/conf.d/db-gc.conf
       - ./api-gc.conf:/etc/nginx/conf.d/api-gc.conf
-#      - ./web-gc.conf:/etc/nginx/conf.d/web-gc.conf
+      - ./web-gc.conf:/etc/nginx/conf.d/web-gc.conf
     networks:
       - app-network
 networks:
